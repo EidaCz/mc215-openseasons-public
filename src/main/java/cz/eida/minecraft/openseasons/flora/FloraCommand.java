@@ -218,8 +218,8 @@ public final class FloraCommand {
 
     /** completion after {@code restore}: world, radius, confirmation */
     public List<String> completeRestore(String[] args) {
+        if (args.length == 1) return server.getWorlds().stream().map(World::getName).toList();
         if (args.length == 2) return List.of("64", "128", "256", "confirm");
-        if (args.length == 3) return List.of("confirm");
         if (args.length == 3) return List.of("confirm");
         return List.of();
     }

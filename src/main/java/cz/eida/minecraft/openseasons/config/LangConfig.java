@@ -49,6 +49,10 @@ public record LangConfig(Map<String, String> messages) {
         d.put("TOGGLEPARTICLESCOMMAND-MESSAGE", "&aSeason particles are &2$status$&a for you.");
         d.put(ENABLED, "enabled");
         d.put(DISABLED, "disabled");
+        d.put("EVENT-PRESENT-ITEM", "&aPresent: ");
+        d.put("EVENT-EGG-ITEM", "&aEgg: ");
+        d.put("EVENT-PRESENT-EMPTY", "&7The present was empty.");
+        d.put("EVENT-EGG-EMPTY", "&7The egg was empty.");
         DEFAULTS = Collections.unmodifiableMap(d);
     }
 

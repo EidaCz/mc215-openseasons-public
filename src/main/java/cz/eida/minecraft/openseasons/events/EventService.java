@@ -161,7 +161,7 @@ public final class EventService implements Listener, PlaceholderResolver.Events 
                     + " without start commands: " + e.getMessage());
             firstRun = true;
         }
-        pickups = new Pickups(viewers, () -> settings);
+        pickups = new Pickups(viewers, () -> settings, () -> config.get().lang());
         christmas = new ChristmasEvent(plugin, () -> settings, viewers, places, pickups);
         newYear = new NewYearEvent(plugin, () -> settings, viewers, places);
         halloween = new HalloweenEvent(plugin, () -> settings, viewers, places);
@@ -674,7 +674,7 @@ public final class EventService implements Listener, PlaceholderResolver.Events 
     private World defaultWorld(CommandSender sender, String arg) {
         if (arg != null) {
             World w = plugin.getServer().getWorld(arg);
-            error(sender, "World " + arg + " does not exist.");
+            if (w == null) error(sender, "World " + arg + " does not exist.");
             return w;
         }
         if (sender instanceof Player p) return p.getWorld();

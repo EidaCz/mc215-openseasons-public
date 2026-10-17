@@ -34,3 +34,9 @@ TOGGLESEASONSCOMMAND-MESSAGE: '&aSeason colours are &2$status$&a for you.'
 TOGGLEPARTICLESCOMMAND-MESSAGE: '&aSeason particles are &2$status$&a for you.'
 ENABLED: enabled
 DISABLED: disabled
+
+# opening a present or an egg (followed by the count and the item)
+EVENT-PRESENT-ITEM: '&aPresent: '
+EVENT-EGG-ITEM: '&aEgg: '
+EVENT-PRESENT-EMPTY: '&7The present was empty.'
+EVENT-EGG-EMPTY: '&7The egg was empty.'

@@ -7,10 +7,12 @@
  */
 package cz.eida.minecraft.openseasons.events;
 
+import cz.eida.minecraft.openseasons.config.LangConfig;
 import cz.eida.minecraft.openseasons.effects.ParticleViewers;
 import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -98,12 +100,17 @@ final class Pickups implements Listener {
 
     private final ParticleViewers viewers;
     private final Supplier<EventSettings> settings;
+    private final Supplier<LangConfig> lang;
+    private static final LegacyComponentSerializer LEGACY =
+            LegacyComponentSerializer.builder().character('&').hexColors().build();
     private final RandomGenerator random = RandomGenerator.getDefault();
     private final Map<UUID, Pickup> byHitbox = new HashMap<>();
 
-    Pickups(ParticleViewers viewers, Supplier<EventSettings> settings) {
+    /** @param lang texts for the player who opened a present or egg ({@code EVENT-*} keys in {@code lang.yml}) */
+    Pickups(ParticleViewers viewers, Supplier<EventSettings> settings, Supplier<LangConfig> lang) {
         this.viewers = viewers;
         this.settings = settings;
+        this.lang = lang;
     }
 
     /** present or egg on the ground; {@code ground} is the centre of the top face of the block */
@@ -234,16 +241,17 @@ final class Pickups implements Listener {
         LootTable loot = p.kind() == Kind.PRESENT ? s.christmas().presentLoot() : s.easter().eggLoot();
         Location at = p.at();
         World world = at.getWorld();
-        String what = p.kind() == Kind.PRESENT ? "Present" : "Egg";
+        boolean present = p.kind() == Kind.PRESENT;
+        LangConfig texts = lang.get();
         Optional<ItemStack> item = roll(loot);
         if (item.isEmpty()) {
-            player.sendActionBar(Component.text(p.kind() == Kind.PRESENT ? "The present was empty." : "The egg was empty.",
-                    NamedTextColor.GRAY));
+            player.sendActionBar(LEGACY.deserialize(texts.get(present ? "EVENT-PRESENT-EMPTY" : "EVENT-EGG-EMPTY")));
         } else {
             ItemStack stack = item.get();
             int amount = stack.getAmount();
             give(player, stack);
-            player.sendActionBar(Component.text(what + ": " + amount + "× ", NamedTextColor.GREEN)
+            player.sendActionBar(LEGACY.deserialize(texts.get(present ? "EVENT-PRESENT-ITEM" : "EVENT-EGG-ITEM"))
+                    .append(Component.text(amount + "× ", NamedTextColor.GREEN))
                     .append(Component.translatable(stack.translationKey(), NamedTextColor.GOLD)));
         }
         if (p.kind() == Kind.PRESENT) {
