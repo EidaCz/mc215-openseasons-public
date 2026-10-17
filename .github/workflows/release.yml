@@ -1,0 +1,43 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# Release: pushing a tag equal to the version in pom.xml (e.g. 26.10-public) builds and tests the
+# plugin and publishes a GitHub release with the jar.
+
+name: Release
+
+on:
+  push:
+    tags: [ '*-public' ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+      - name: Check the tag against the version
+        run: |
+          version=$(mvn -B -q help:evaluate -Dexpression=project.version -DforceStdout)
+          if [ "$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match the version $version in pom.xml" >&2
+            exit 1
+          fi
+      - name: Build and test
+        run: mvn -B verify
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "target/OpenSeasons-$GITHUB_REF_NAME.jar" \
+            --title "OpenSeasons $GITHUB_REF_NAME" --generate-notes

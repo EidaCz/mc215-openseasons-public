@@ -97,6 +97,18 @@ mvn verify
 The plugin jar is `target/OpenSeasons-<version>.jar`. Versions are numbered `YY.MM-public`
 (e.g. `26.10-public`).
 
+## Releases
+
+Every push to `main` is built and tested by GitHub Actions. Pushing a tag equal to the version in
+`pom.xml` publishes a release with the jar:
+
+```sh
+git tag 26.10-public
+git push origin 26.10-public
+```
+
+The jars are on the [Releases](https://github.com/EidaCz/mc215-openseasons-public/releases) page.
+
 ## License
 
 GNU General Public License v3.0, see [LICENSE](LICENSE).
