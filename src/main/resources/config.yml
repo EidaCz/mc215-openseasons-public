@@ -1,0 +1,183 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# OpenSeasons – main settings
+#
+# Seasons, landscape colours, particles, seasonal animals and plants. The calendar is in calendar.yml,
+# texts in lang.yml, the real calendar (real seasons and date ranges) in real-calendar.yml, seasonal
+# plants in flora.yml and calendar events in events/.
+
+config-version: 1
+
+# debug commands /openseasons debug … (trigger phenomena manually to try them); keep off in production
+debug-enabled: false
+
+# Landscape colours on the client. Turned on by modify-biome-on-client, the biome colours are in
+# biomes/*.yml. They need the packetevents plugin; changes apply to players after they reconnect.
+client-colors:
+  # five colours of autumn leaves for patches across the forest (brown, yellow, red, orange, green);
+  # replaces the five autumn leaf colours of all groups, NONE = colours from the biome files
+  autumn-leaves: 8B5A2B, D9A21B, B83A1E, E8962A, 6BA941
+  # spring blossom: between 25 and 65 % of spring part of the patches blossoms in the spring leaf
+  # colour from the biome files (pink); share of that colour in a blossoming patch
+  spring-blossom: 85%
+  # occasional morning fog in lowlands in late autumn
+  morning-fog:
+    enabled: true
+    # chance of a foggy morning (drawn for each world and day)
+    chance: 35%
+    # from which part of autumn
+    from-season-progress: 50%
+    # highest top edge of the fog above sea level, blocks
+    height: 16
+  # block replacements from block-replacements that are not used (names); pink-trees (oaks as cherry
+  # trees) is replaced by the blossom tint in the spring leaves, NONE = all by block-replacements
+  disabled-block-replacements: pink-trees
+
+# --- main switches ---
+modify-blocks: true
+# day and night length by the month in calendar.yml; OpenSeasons then keeps advance_time off in worlds
+# with seasons and moves the time itself (including skipping the night by sleeping)
+modify-daynight-length: true
+modify-biome-on-client: true
+
+# --- season cycling ---
+automatic-season-cycling: true
+send-message-on-season-cycle: false
+
+# --- performance ---
+delay-per-operation: 4
+unloaded-chunks-check-delay: 80
+performance:
+  prioritise-tps: true
+  min-tps: 19.5
+
+# --- snow golems ---
+disable-snow-placement-all-snowman: false
+snowman-wear-pumpkin: false
+snowman-attack-mobs: true
+snowman-immune-to-water: true
+
+# --- plants and leaves ---
+keep-player-placed-plants: true
+flower-chance-in-spring: 2.0%
+max-berrybushes-per-chunk: 10
+disable-berry-damage-for-entities: true
+generate-leaf-litter: true
+destroy-plants-for-leaf-litter: true
+spawn-leaf-litter-under: OAK_LEAVES, BIRCH_LEAVES, DARK_OAK_LEAVES
+regrow-grass-everywhere: true
+spawn-mushrooms-in-fall: true
+
+# --- animals ---
+entities:
+  spawn-entities: true
+  spawn-chance-animals: 10.0%
+  despawn-season-animals: true
+  spring:
+    spawn-extra-animals: true
+    spawn-extra-bees: true
+    spawn-extra-rabbits: true
+  summer:
+    spawn-ocelots: false
+    spawn-pandas: false
+    spawn-parrots: true
+    replace-zombies-with-husks: true
+  fall:
+    spawn-bats: true
+    spawn-frogs: false
+    spawn-cave-spiders: false
+    spawn-foxes: false
+    spawn-mooshrooms: true
+    spawn-extra-spiders: true
+    give-entities-pumpkin: true
+    entities-pumpkin-chance: 22.0%
+  winter:
+    spawn-wolves: false
+    spawn-foxes: false
+    spawn-polarbears: false
+    spawn-snowman: true
+    replace-skeletons-with-strays: true
+
+# --- sub-seasons (START 0, EARLY 1, MIDDLE 2, LATE 3, END 4) ---
+sub-seasons:
+  enabled: true
+  # foliage tint during the transition to the next season: '#RRGGBB,WEIGHT:0.3' or NONE
+  foliage-color-adjustments:
+    WINTER-SPRING: NONE
+    SPRING-SUMMER: '#32CD32,WEIGHT:0.3'
+    SUMMER-FALL: NONE
+    FALL-WINTER: NONE
+
+# --- particles ---
+particles:
+  FALLING_LEAVES:
+    enabled: true
+    spawn-chance: 4%
+    seasons: [ SUMMER ]
+  SMALL_FALLING_LEAVES:
+    enabled: true
+    spawn-chance: 25%
+    seasons: [ FALL ]
+  SHOOTING_STARS:
+    enabled: true
+    relative-height: 150
+    chance: 1%
+    seasons: [ SUMMER ]
+  NIGHT_SPARKS:
+    enabled: true
+    particle-count: 200
+    relative-height: 40
+    event-chance: 33%
+    seasons: [ WINTER ]
+  FIREFLIES:
+    enabled: true
+    spawn-chance: 5%
+    seasons: [ SPRING, SUMMER ]
+  # now and then a triangular craft (or a formation of three) flies over a player; temporary entities,
+  # not saved and not on the map. The chance applies to a check once a minute in a world with players
+  # (1 % = on average once in a little under two hours). Try it: /openseasons debug ufo
+  UFO:
+    enabled: true
+    chance: 1%
+    seasons: [ WINTER, SPRING, SUMMER, FALL ]
+    # above the surface; at most 65 % of the player's view distance, higher it would vanish in the fog
+    relative-height: 120
+    formation-chance: 15%
+  # aurora on the northern sky on clear nights; the chance applies to each night and world.
+  # Try it: /openseasons debug aurora
+  AURORA:
+    enabled: true
+    chance: 20%
+    seasons: [ WINTER ]
+falling-leaf-item: KELP
+falling-leaf-custommodeldata: 0
+
+# --- other ---
+# namespace of the seasonal biomes (players see it in F3)
+biome-display-name: openseasons
+on-new-world-creation:
+  # a new world takes over the date and season of the main world
+  sync-with-other-worlds: false
+  # season of a new world; NONE = a new world stays without seasons
+  default-season: NONE
+
+# block replacement on the client only (looks), by season and sub-season
+block-replacements:
+  enabled: true
+  replacements:
+    birch-trees:
+      enabled: true
+      to-replace: BIRCH_LEAVES
+      replacement: ACACIA_LEAVES
+      seasons: WINTER, FALL
+      sub-seasons: 0, 1, 2, 3, 4
+    pink-trees:
+      enabled: true
+      to-replace: OAK_LEAVES
+      replacement: CHERRY_LEAVES
+      seasons: SPRING
+      sub-seasons: 2

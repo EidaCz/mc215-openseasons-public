@@ -1,0 +1,43 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# Custom biomes (TERRALITH_AMETHYST_RAINFOREST).
+includes: terralith:amethyst_canyon, terralith:amethyst_rainforest
+show-snow-instead-of-rain:
+  spring: false
+  summer: false
+  fall: false
+  winter: true
+# colours RRGGBB or NONE (unchanged); treecolor (leaves) one colour or five for patches
+colors:
+  spring:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: NONE
+    treecolor: NONE
+    fogcolor: NONE
+  summer:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: '59BB6D'
+    treecolor: 'E0CDFF'
+    fogcolor: NONE
+  fall:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: '6DBB59'
+    treecolor: '985BFF, 985BFF, E0CDFF, 78CA63, AC97CF'
+    fogcolor: NONE
+  winter:
+    skycolor: 'D2DEFF'
+    watercolor: '216FC4'
+    waterfogcolor: '216FC4'
+    grasscolor: 'D8C8F2'
+    treecolor: 'E0CDFF'
+    fogcolor: 'A6D1FF'

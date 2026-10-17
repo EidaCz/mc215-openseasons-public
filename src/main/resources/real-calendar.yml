@@ -1,0 +1,48 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# OpenSeasons – real calendar
+#
+# Seasons and ranges by the real date (not the game calendar). Dates as dd/mm (every year), the end of
+# a range is inclusive.
+#
+# Precedence at a place (chunk column): region range (flag real-periods) > permanent-season of the
+# region > season-source of the region > world range (worlds below) > season source of the world
+# (worlds below) > game calendar.
+#
+# WorldGuard regions:
+#   /rg flag spawn season-source REAL       season by the real date (GAME = game calendar)
+#   /rg flag spawn real-periods halloween   ranges that apply in the region (list of ids from here)
+
+config-version: 1
+
+# time zone of the real date; system = the server time zone
+timezone: system
+
+# starts of the real seasons, astronomical by default
+seasons:
+  spring: 20/03
+  summer: 21/06
+  fall: 23/09
+  winter: 21/12
+
+# season source of a whole world: game (game calendar) or real (real seasons)
+worlds:
+  world: game
+
+# Ranges by the real date. season (NONE = unchanged), season-progress (without it by the real season
+# when it is the same, otherwise 50 %), events (ids from events.yml), worlds (whole worlds).
+# Built-in events (christmas, newyear, halloween, easter) only run their mechanics on the spot in a
+# region; the start and end lines only in the worlds from worlds.
+periods:
+  halloween:
+    enabled: true
+    from: 25/10
+    to: 04/11
+    season: FALL
+    season-progress: 70%
+    events: [ halloween ]
+    worlds: [ world ]

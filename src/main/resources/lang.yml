@@ -1,0 +1,36 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# OpenSeasons – texts
+#
+# Colours &a, &l… and &#RRGGBB. The plugin fills in the variables $name$. SEASON-TO-* may also be a list
+# of lines.
+
+config-version: 1
+
+SEASON-TO-WINTER: '&b&lWinter begins!'
+SEASON-TO-SPRING: '&b&lSpring begins!'
+SEASON-TO-SUMMER: '&b&lSummer begins!'
+SEASON-TO-FALL: '&b&lFall begins!'
+NO-PERMISSION-MESSAGE: '&cYou do not have permission to do that.'
+
+# season names, also for %mc215os_season%
+WINTER-DISPLAY-NAME: Winter
+SPRING-DISPLAY-NAME: Spring
+SUMMER-DISPLAY-NAME: Summer
+FALL-DISPLAY-NAME: Fall
+
+SEASONCOMMAND-DISABLED: '&cSeasons are disabled in this world.'
+SEASONCOMMAND-CURRENTDATE: '&aToday is &2$current_weekday$, $current_month$ $current_day$, year $current_year$&a.'
+SEASONSCOMMAND-CURRENTSEASON: '&aSeason: &2$current_season$'
+SEASONSCOMMAND-DAYSUNTILNEXTSEASON: '&aDays until the next season (&2$next_season$&a): &7$days_until_next_season$'
+SEASONSCOMMAND-DAYSUNTILNEXTEVENT: '&aDays until the next event (&2$next_event$&a): &7$days_until_next_event$'
+SEASONCOMMAND-TIME: '&aTime: &2$time$'
+SEASONCOMMAND-EVENTS: '&aRunning events: &2$events$'
+TOGGLESEASONSCOMMAND-MESSAGE: '&aSeason colours are &2$status$&a for you.'
+TOGGLEPARTICLESCOMMAND-MESSAGE: '&aSeason particles are &2$status$&a for you.'
+ENABLED: enabled
+DISABLED: disabled

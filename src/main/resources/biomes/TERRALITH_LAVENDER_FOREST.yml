@@ -1,0 +1,43 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# Custom biomes (TERRALITH_LAVENDER_FOREST).
+includes: terralith:lavender_forest, terralith:lavender_valley
+show-snow-instead-of-rain:
+  spring: false
+  summer: false
+  fall: false
+  winter: true
+# colours RRGGBB or NONE (unchanged); treecolor (leaves) one colour or five for patches
+colors:
+  spring:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: NONE
+    treecolor: NONE
+    fogcolor: NONE
+  summer:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: 'A2EFC7'
+    treecolor: 'B4A4E9'
+    fogcolor: NONE
+  fall:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: '8CD3EC'
+    treecolor: 'BE496D, BE496D, B4A4E9, 998AE8, 998AE8'
+    fogcolor: NONE
+  winter:
+    skycolor: 'D2DEFF'
+    watercolor: '216FC4'
+    waterfogcolor: '216FC4'
+    grasscolor: 'CFC6EB'
+    treecolor: 'E2D9FF'
+    fogcolor: 'A6D1FF'

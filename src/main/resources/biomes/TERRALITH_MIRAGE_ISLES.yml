@@ -1,0 +1,43 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# Custom biomes (TERRALITH_MIRAGE_ISLES).
+includes: terralith:mirage_isles
+show-snow-instead-of-rain:
+  spring: false
+  summer: false
+  fall: false
+  winter: true
+# colours RRGGBB or NONE (unchanged); treecolor (leaves) one colour or five for patches
+colors:
+  spring:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: NONE
+    treecolor: NONE
+    fogcolor: NONE
+  summer:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: '4BDFAF'
+    treecolor: '4BDFAF'
+    fogcolor: NONE
+  fall:
+    skycolor: NONE
+    watercolor: NONE
+    waterfogcolor: NONE
+    grasscolor: '2A97C7'
+    treecolor: '67D5E6, 67D5E6, B04A5A, B04A5A, 506FE5'
+    fogcolor: NONE
+  winter:
+    skycolor: 'D2DEFF'
+    watercolor: '216FC4'
+    waterfogcolor: '216FC4'
+    grasscolor: '2A71C7'
+    treecolor: '506FE5'
+    fogcolor: 'A6D1FF'

@@ -1,0 +1,97 @@
+# OpenSeasons - public copy
+# Author: EidaCz
+#
+# This file is part of the public copy of the OpenSeasons plugin, which is part of the
+# non-public MC-215 project. Licensed under the GNU General Public License v3.0 (see LICENSE).
+#
+# OpenSeasons – calendar
+#
+# The calendar is fully configurable: any number of months and days of the week, with any names and
+# lengths. Saved dates remember the order of a month, not its name, so months can be renamed.
+# After the calendar is shortened, dates outside its range move to the last valid day.
+
+config-version: 1
+
+enabled: true
+# date as month/day/year instead of day/month/year
+american-date-format: false
+# a calendar day = a real day (otherwise a game day, changing at game midnight)
+calendar-is-real-life-days: false
+# time zone of real days (system = the server time zone)
+timezone: system
+
+time:
+  format: '$hours$:$minutes$'
+  12-hour-clock:
+    enabled: false
+    add-am-pm: false
+
+# days of the week in order; their count sets the length of the week
+week-days:
+  - Monday
+  - Tuesday
+  - Wednesday
+  - Thursday
+  - Friday
+  - Saturday
+  - Sunday
+
+# worlds without calendar events (Christmas, New Year, Halloween, Easter and custom ones)
+worlds-without-events: [ ]
+
+# season start: '<month> <day>', the month by name or order
+winter-start: December 4
+spring-start: March 4
+summer-start: June 4
+fall-start: September 4
+
+# months in order: number of days and day and night length in real minutes
+months:
+  January:
+    days: 31
+    day-length-in-min: 7
+    night-length-in-min: 13
+  February:
+    days: 28
+    day-length-in-min: 8
+    night-length-in-min: 12
+  March:
+    days: 31
+    day-length-in-min: 9
+    night-length-in-min: 11
+  April:
+    days: 30
+    day-length-in-min: 10
+    night-length-in-min: 10
+  May:
+    days: 31
+    day-length-in-min: 11
+    night-length-in-min: 9
+  June:
+    days: 30
+    day-length-in-min: 12
+    night-length-in-min: 8
+  July:
+    days: 31
+    day-length-in-min: 13
+    night-length-in-min: 7
+  August:
+    days: 31
+    day-length-in-min: 12
+    night-length-in-min: 8
+  September:
+    days: 30
+    day-length-in-min: 11
+    night-length-in-min: 9
+  October:
+    days: 31
+    day-length-in-min: 10
+    night-length-in-min: 10
+  November:
+    days: 30
+    day-length-in-min: 9
+    night-length-in-min: 11
+  December:
+    days: 31
+    day-length-in-min: 8
+    night-length-in-min: 12
